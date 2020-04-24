@@ -30,7 +30,7 @@ jobs:
           Rscript build_r.R --skip-install
       - run: | 
           export CXX=g++-9 CC=gcc-9
-          R CMD INSTALL --build $(find . -name "*.tar.gz" -execdir echo '{}' ';')
+          R CMD INSTALL --build $(find . -name "*.tar.gz")
       - name: Test installation
         run: |
           library(lightgbm)
