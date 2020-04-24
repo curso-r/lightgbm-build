@@ -47,7 +47,8 @@ jobs:
         with:
           name: ${{runner.os}}
           path: ${{runner.workspace}}/artifacts
-      - uses: csexton/release-asset-action@v2
+      - name: upload
+        uses: csexton/release-asset-action@v2
         with:
           pattern: "*.tgz"
           github-token: ${{ secrets.GITHUB_TOKEN }}
