@@ -48,10 +48,11 @@ jobs:
           name: ${{runner.os}}
           path: ${{runner.workspace}}/artifacts
       - name: upload
-        uses: csexton/release-asset-action@v2
+        uses: svenstaro/upload-release-action@v1-release
         with:
-          pattern: "*.tgz"
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          release-url: https://uploads.github.com/repos/curso-r/lightgbm-build/releases/1/assets
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: *.tgz
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true
         
-          
