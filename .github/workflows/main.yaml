@@ -21,7 +21,6 @@ jobs:
       - uses: r-lib/actions/setup-r@master
       - uses: r-lib/actions/setup-pandoc@master
       - run: |
-          brew install gcc
           brew install libomp
       - run: |
           Rscript -e 'install.packages(c("data.table", "R6", "jsonlite"))'
