@@ -29,7 +29,9 @@ jobs:
           git clone --recursive https://github.com/microsoft/LightGBM
           cd LightGBM
           export CXX=g++-9 CC=gcc-9
-          Rscript build_r.R
+          Rscript build_r.R --skip-install
+      - run: | 
+          R CMD INSTALL --build $(find . -name "*.tar.gz" -execdir echo '{}' ';')
       - name: Test installation
         run: |
           library(lightgbm)
@@ -41,7 +43,7 @@ jobs:
         shell: Rscript {0}
       - run: |
           mkdir ${{runner.workspace}}/artifacts
-          find  . -name '*.tar.gz' -exec cp '{}' ${{runner.workspace}}/artifacts/ ";"
+          find  . -name '*.tgz' -exec cp '{}' ${{runner.workspace}}/artifacts/ ";"
       - uses: actions/upload-artifact@v1
         with:
           name: ${{runner.os}}
