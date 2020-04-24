@@ -27,9 +27,9 @@ jobs:
       - run: |
           git clone --recursive https://github.com/microsoft/LightGBM
           cd LightGBM
-          export CXX=g++-9 CC=gcc-9
-          Rscript build_r.R
+          Rscript build_r.R --skip-install
       - run: | 
+          export CXX=g++-9 CC=gcc-9
           R CMD INSTALL --build $(find . -name "*.tar.gz" -execdir echo '{}' ';')
       - name: Test installation
         run: |
