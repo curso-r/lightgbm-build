@@ -39,5 +39,12 @@ jobs:
           params <- list(objective="regression", metric="l2")
           model <- lgb.cv(params, dtrain, 10, nfold=5, min_data=1, learning_rate=1, early_stopping_rounds=10)
         shell: Rscript {0}
+      - run: |
+          mkdir ${{runner.workspace}}/artifacts
+          cp *.tar.gz cd ${{runner.workspace}}/artifacts
+      - uses: actions/upload-artifact@v1
+        with:
+          name: ${{runner.os}}
+          path: ${{runner.workspace}}/artifacts
         
           
