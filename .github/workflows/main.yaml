@@ -21,12 +21,14 @@ jobs:
       - uses: r-lib/actions/setup-r@master
       - uses: r-lib/actions/setup-pandoc@master
       - run: |
+          brew install gcc
           brew install libomp
       - run: |
           Rscript -e 'install.packages(c("data.table", "R6", "jsonlite"))'
       - run: |
           git clone --recursive https://github.com/microsoft/LightGBM
           cd LightGBM
+          export CXX=g++-9 CC=gcc-9
           Rscript build_r.R
       - name: Test installation
         run: |
