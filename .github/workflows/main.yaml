@@ -47,10 +47,10 @@ jobs:
         with:
           name: ${{runner.os}}
           path: ${{runner.workspace}}/artifacts
-      - name: Upload Assets to Release with a wildcard
-        uses: csexton/release-asset-action@v2
+      - uses: csexton/release-asset-action@v2
         with:
           pattern: "*.tgz"
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          release-url: https://uploads.github.com/repos/curso-r/lightgbm-build/releases/1/assets
         
           
