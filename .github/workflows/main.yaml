@@ -41,7 +41,7 @@ jobs:
         shell: Rscript {0}
       - run: |
           mkdir ${{runner.workspace}}/artifacts
-          cp *.tar.gz cd ${{runner.workspace}}/artifacts
+          find  . -name '*.tar.gz' -exec cp '{}' ${{runner.workspace}}/artifacts/ ";"
       - uses: actions/upload-artifact@v1
         with:
           name: ${{runner.os}}
