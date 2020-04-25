@@ -19,5 +19,5 @@ brew install libomp
 Then you can run:
 
 ```
-install.packages("https://github.com/curso-r/lightgbm-build/releases/download/refs%2Fheads%2Fmaster/lightgbm_2.3.2.tgz")
+install.packages("https://github.com/curso-r/lightgbm-build/releases/download/macos/lightgbm_2.3.2.tgz")
 ```
