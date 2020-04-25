@@ -76,6 +76,7 @@ jobs:
           Rscript build_r.R --skip-install
       - run: | 
           install.packages("pkgbuild")
+          setwd("./LightGBM/")
           print(list.files())
           file <- list.files(pattern = ".tar.gz")
           print(file)
