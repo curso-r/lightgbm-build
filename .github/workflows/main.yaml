@@ -73,7 +73,7 @@ jobs:
       - run: |
           git clone --recursive https://github.com/microsoft/LightGBM
           cd LightGBM
-          Rscript build_r.R --skip-install
+          Rscript build_r.R
       - run: | 
           install.packages("pkgbuild")
           setwd("./LightGBM/")
