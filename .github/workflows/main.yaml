@@ -7,7 +7,7 @@ on:
 name: Build lightGBM
 
 jobs:
-  Build:
+  macos:
     strategy:
       fail-fast: false
       matrix:
@@ -55,4 +55,43 @@ jobs:
           tag: macos
           overwrite: true
           file_glob: true
-        
+  windows:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["windows-latest"]
+    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.os }}
+    timeout-minutes: 20
+    env:
+      R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
+    steps:
+      - uses: r-lib/actions/setup-r@master
+      - uses: r-lib/actions/setup-pandoc@master
+      - run: |
+          Rscript -e 'install.packages(c("data.table", "R6", "jsonlite"))'
+      - run: |
+          git clone --recursive https://github.com/microsoft/LightGBM
+          cd LightGBM
+          Rscript build_r.R --skip-install
+      - run: | 
+          export CXX=g++-9 CC=gcc-9
+          R CMD INSTALL --build $(find . -name "*.tar.gz")
+      - name: Test installation
+        run: |
+          library(lightgbm)
+          data(agaricus.train, package='lightgbm')
+          train <- agaricus.train
+          dtrain <- lgb.Dataset(train$data, label=train$label)
+          params <- list(objective="regression", metric="l2")
+          model <- lgb.cv(params, dtrain, 10, nfold=5, min_data=1, learning_rate=1, early_stopping_rounds=10)
+        shell: Rscript {0}
+      - name: upload
+        uses: svenstaro/upload-release-action@v1-release
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: '*.tgz'
+          tag: windows
+          overwrite: true
+          file_glob: true          
+  
