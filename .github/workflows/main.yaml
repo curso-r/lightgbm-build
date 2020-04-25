@@ -77,7 +77,7 @@ jobs:
       - run: | 
           install.packages("pkgbuild")
           file <- list.files(pattern = ".tar.gz")
-          pkgbuild(file, binary = TRUE, args = "--no-multiarch")
+          pkgbuild::build(file, binary = TRUE, args = "--no-multiarch")
         shell: Rscript {0}
       - name: Test installation
         run: |
