@@ -75,8 +75,10 @@ jobs:
           cd LightGBM
           Rscript build_r.R --skip-install
       - run: | 
-          $file = dir *.tar.gz
-          R CMD INSTALL --build $file.Name
+          install.packages("pkgbuild")
+          file <- list.files(pattern = ".tar.gz")
+          pkgbuild(file, binary = TRUE, args = "--no-multiarch")
+        shell: Rscript {0}
       - name: Test installation
         run: |
           library(lightgbm)
