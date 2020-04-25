@@ -75,7 +75,7 @@ jobs:
           cd LightGBM
           Rscript build_r.R --skip-install
       - run: | 
-          R CMD INSTALL --build $(find . -name "*.tar.gz")
+          for /r %%i in (*.tar.gz ) do R CMD INSTALL --build %%i 
       - name: Test installation
         run: |
           library(lightgbm)
