@@ -69,7 +69,7 @@ jobs:
       - uses: r-lib/actions/setup-r@master
       - uses: r-lib/actions/setup-pandoc@master
       - run: |
-          Rscript -e 'install.packages(c("data.table", "R6", "jsonlite"))'
+          Rscript -e "install.packages(c('data.table', 'R6', 'jsonlite'))"
       - run: |
           git clone --recursive https://github.com/microsoft/LightGBM
           cd LightGBM
