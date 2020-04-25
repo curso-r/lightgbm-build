@@ -76,7 +76,9 @@ jobs:
           Rscript build_r.R --skip-install
       - run: | 
           install.packages("pkgbuild")
+          print(list.files())
           file <- list.files(pattern = ".tar.gz")
+          print(file)
           pkgbuild::build(file, binary = TRUE, args = "--no-multiarch")
         shell: Rscript {0}
       - name: Test installation
