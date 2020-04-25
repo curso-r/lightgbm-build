@@ -52,7 +52,7 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: '*.tgz'
-          tag: ${{ github.ref }}
+          tag: macos
           overwrite: true
           file_glob: true
         
