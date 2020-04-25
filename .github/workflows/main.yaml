@@ -71,7 +71,7 @@ jobs:
       - run: |
           Rscript -e "install.packages(c('data.table', 'R6', 'jsonlite'))"
       - run: |
-          git clone --recursive https://github.com/microsoft/LightGBM
+          git clone --recursive https://github.com/dfalbel/LightGBM
           cd LightGBM
           Rscript build_r.R
       - run: | 
