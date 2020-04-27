@@ -13,8 +13,8 @@ jobs:
       matrix:
         os: ["macos-latest"]
         r: ["3.6", "4.0"]
-    runs-on: ${{ matrix.os }} ${{ matrix.r }}
-    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }} 
+    name: ${{ matrix.os }} ${{ matrix.r }}
     timeout-minutes: 20
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
@@ -65,7 +65,7 @@ jobs:
         os: ["windows-latest"]
         r: ["3.6", "4.0"]
     runs-on: ${{ matrix.os }}
-    name: ${{ matrix.os }} ${{ matrix.R }}
+    name: ${{ matrix.os }} ${{ matrix.r }}
     timeout-minutes: 20
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
