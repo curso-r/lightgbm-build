@@ -82,6 +82,10 @@ jobs:
           print(file)
           pkgbuild::build(file, binary = TRUE, args = "--no-multiarch")
         shell: Rscript {0}
+      - run: |
+          file <- list.files(pattern = ".zip")
+          install.packages(file, repos = NULL)
+        shell: Rscript {0}
       - name: Test installation
         run: |
           library(lightgbm)
