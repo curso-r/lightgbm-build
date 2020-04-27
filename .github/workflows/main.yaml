@@ -78,14 +78,9 @@ jobs:
       - run: | 
           install.packages("pkgbuild")
           setwd("./LightGBM/")
-          print(list.files())
           file <- list.files(pattern = ".tar.gz")
-          print(file)
-          pkgbuild::build(file, binary = TRUE, args = "--no-multiarch")
-        shell: Rscript {0}
-      - run: |
-          file <- list.files(pattern = ".zip")
-          install.packages(file, repos = NULL, type = "win.binary")
+          out <- pkgbuild::build(file, binary = TRUE, args = "--no-multiarch")
+          install.packages(out, repos = NULL, type = "win.binary")
         shell: Rscript {0}
       - name: Test installation
         run: |
