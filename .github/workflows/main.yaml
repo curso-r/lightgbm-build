@@ -84,7 +84,7 @@ jobs:
         shell: Rscript {0}
       - run: |
           file <- list.files(pattern = ".zip")
-          install.packages(file, repos = NULL)
+          install.packages(file, repos = NULL, type = "win.binary")
         shell: Rscript {0}
       - name: Test installation
         run: |
