@@ -21,3 +21,14 @@ Then you can run:
 ```
 install.packages("https://github.com/curso-r/lightgbm-build/releases/download/macos/lightgbm_2.3.2.tgz")
 ```
+
+## Windows
+
+On windows just run:
+
+```
+install.packages("https://github.com/curso-r/lightgbm-build/releases/download/windows/lightgbm_2.3.2.zip", 
+                 repos = NULL, type = "win.binary")
+```
+
+
