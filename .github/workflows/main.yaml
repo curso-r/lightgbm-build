@@ -12,13 +12,16 @@ jobs:
       fail-fast: false
       matrix:
         os: ["macos-latest"]
-    runs-on: ${{ matrix.os }}
+        r: ["3.6", "4.0"]
+    runs-on: ${{ matrix.os }} ${{ matrix.r }}
     name: ${{ matrix.os }}
     timeout-minutes: 20
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
     steps:
       - uses: r-lib/actions/setup-r@master
+        with:
+          r-version: ${{ matrix.r }}
       - uses: r-lib/actions/setup-pandoc@master
       - run: |
           brew install libomp
@@ -52,7 +55,7 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: '*.tgz'
-          tag: macos
+          tag: macos-r-${{ matrix.r }}
           overwrite: true
           file_glob: true
   windows:
@@ -60,13 +63,16 @@ jobs:
       fail-fast: false
       matrix:
         os: ["windows-latest"]
+        r: ["3.6", "4.0"]
     runs-on: ${{ matrix.os }}
-    name: ${{ matrix.os }}
+    name: ${{ matrix.os }} ${{ matrix.R }}
     timeout-minutes: 20
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
     steps:
       - uses: r-lib/actions/setup-r@master
+        with:
+          r-version: ${{ matrix.r }}
       - uses: r-lib/actions/setup-pandoc@master
       - run: |
           Rscript -e "install.packages(c('data.table', 'R6', 'jsonlite'))"
@@ -90,15 +96,12 @@ jobs:
           params <- list(objective="regression", metric="l2")
           model <- lgb.cv(params, dtrain, 10, nfold=5, min_data=1, learning_rate=1, early_stopping_rounds=10)
         shell: Rscript {0}
-      - run:  | 
-          cd ..
-          ls
       - name: upload
         uses: svenstaro/upload-release-action@v1-release
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: 'LightGBM/*.zip'
-          tag: windows
+          tag: windows-r-$${ matrix.r }}
           overwrite: true
           file_glob: true          
   
