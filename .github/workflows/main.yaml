@@ -33,6 +33,7 @@ jobs:
           R CMD INSTALL --build $(find . -name "*.tar.gz")
       - name: Test installation
         run: |
+          print(installed.packages())
           library(lightgbm)
           data(agaricus.train, package='lightgbm')
           train <- agaricus.train
