@@ -19,7 +19,12 @@ brew install libomp
 Then you can run:
 
 ```
-install.packages("https://github.com/curso-r/lightgbm-build/releases/download/macos/lightgbm_2.3.2.tgz")
+install.packages(
+  sprintf(
+    "https://github.com/curso-r/lightgbm-build/releases/download/macos-r-%d.%d/lightgbm_2.3.2.zip",
+    getRversion()$major, getRversion()$minor
+  )
+)
 ```
 
 ## Windows
@@ -27,8 +32,13 @@ install.packages("https://github.com/curso-r/lightgbm-build/releases/download/ma
 On windows just run:
 
 ```
-install.packages("https://github.com/curso-r/lightgbm-build/releases/download/windows/lightgbm_2.3.2.zip", 
-                 repos = NULL, type = "win.binary")
+install.packages(
+  sprintf(
+    "https://github.com/curso-r/lightgbm-build/releases/download/windows-r-%d.%d/lightgbm_2.3.2.zip",
+    getRversion()$major, getRversion()$minor
+  ),
+  repos = NULL, type = "win.binary"
+)
 ```
 
 
