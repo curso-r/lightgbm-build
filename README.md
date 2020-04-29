@@ -41,4 +41,14 @@ install.packages(
 )
 ```
 
+## Ubuntu 18.04
 
+```
+install.packages(
+  sprintf(
+    "https://github.com/curso-r/lightgbm-build/releases/download/ubuntu-18.04-r-%d.%d/lightgbm_2.3.2_R_x86_64-pc-linux-gnu.tar.gz",
+    getRversion()$major, getRversion()$minor
+  ),
+  repos = NULL
+)
+```
