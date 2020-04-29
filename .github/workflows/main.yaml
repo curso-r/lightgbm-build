@@ -40,12 +40,11 @@ jobs:
           params <- list(objective="regression", metric="l2")
           model <- lgb.cv(params, dtrain, 10, nfold=5, min_data=1, learning_rate=1, early_stopping_rounds=10)
         shell: Rscript {0}
-      - run: ls
       - name: upload
         uses: svenstaro/upload-release-action@v1-release
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: '*.tgz'
+          file: '*.tar.gz'
           tag: ${{ matrix.os }}-r-${{ matrix.r }}
           overwrite: true
           file_glob: true
