@@ -23,7 +23,8 @@ install.packages(
   sprintf(
     "https://github.com/curso-r/lightgbm-build/releases/download/macos-r-%d.%d/lightgbm_2.3.2.zip",
     getRversion()$major, getRversion()$minor
-  )
+  ),
+  repos = NULL
 )
 ```
 
